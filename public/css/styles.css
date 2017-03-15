@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+#header .title, #header .subtitle {
+    margin: 0;
+}
+
+#header .title {
+    padding: 40px 20px;
+}
+
+#header .subtitle, #content {
+    padding: 20px;
+}
+
+.user-box {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+a {
+    cursor: pointer;
+}

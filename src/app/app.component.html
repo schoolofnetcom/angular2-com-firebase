@@ -1,0 +1,42 @@
+<main class="mdl-grid">
+  <div class="user-box">
+    <span class="mdl-chip mdl-chip--contact mdl-chip--deletable" *ngIf="!user">
+      <a class="mdl-chip__action" (click)="login()">
+        <i class="material-icons">people</i>
+      </a>
+    </span>
+    <span class="mdl-chip mdl-chip--contact mdl-chip--deletable" *ngIf="user">
+      <img attr.src="{{user.auth.photoURL}}" class="mdl-chip__contact">
+      <span class="mdl-chip__text">{{user.auth.displayName}}</span>
+      <a class="mdl-chip__action" (click)="logout()">
+        <i class="material-icons">power_settings_new</i>
+      </a>
+    </span>
+  </div>
+
+  <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset">
+    <form class="mdl-typography--text-center" (submit)="create($event, textField.value); textField.value=''">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" #textField>
+        <label class="mdl-textfield__label">Qual curso você quer ver aqui...</label>
+      </div>
+    </form>
+
+    <ul class="mdl-list">
+      <li class="mdl-list__item" *ngFor="let item of items | async">
+        <span class="mdl-list__item-primary-content">
+          <i class="mdl-list__item-avatar mdl-typography--text-center mdl-badge mdl-badge--overlap" attr.data-badge="{{item.votes}}" [ngClass]="item.color">
+            {{ item.title.charAt(0) }}
+          </i>
+          {{ item.title }}
+        </span>
+        <a class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" (click)="update(item.$key)">
+          <i class="material-icons">keyboard_arrow_up</i>
+        </a>
+        <a class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-color--red" (click)="remove(item.$key)">
+          <i class="material-icons">cancel</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</main>
